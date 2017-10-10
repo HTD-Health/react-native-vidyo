@@ -13,16 +13,16 @@ Plugin is under heavy development
 6. Run `react-native link`
 7. Add This entitlements to your <application_name>/<application_name>.entitlements
 
-`
+```
     <key>keychain-access-groups</key>
     <array>
         <string>$(AppIdentifierPrefix)VidyoLicense</string>
         <string>$(AppIdentifierPrefix)<Your Bundle Identifier></string>
     </array>
-`
+```
 ### Android
 
-WIP
+Work in progress
 
 
 ## USAGE

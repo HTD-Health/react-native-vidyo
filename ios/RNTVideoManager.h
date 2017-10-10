@@ -11,3 +11,4 @@
 @interface RNTVideoManager : RCTViewManager
 
 @end
+

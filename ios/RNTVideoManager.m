@@ -23,6 +23,7 @@
 
 RCT_EXPORT_MODULE()
 
+RCT_EXPORT_VIEW_PROPERTY(hudHidden, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(host, NSString)
 RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
@@ -32,94 +33,99 @@ RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
 
 - (UIView *)view {
-  RNTVideoView *view = [RNTVideoView new];
-  view.delegate = self;
-  self.videoView = view;
-  return view;
+    RNTVideoView *view = [RNTVideoView new];
+    view.delegate = self;
+    self.videoView = view;
+    return view;
 }
 
 #pragma mark EXPORT methods
 
 RCT_EXPORT_METHOD(connectToRoom) {
-  const char *host = [self.videoView.host UTF8String];
-  const char *token = [self.videoView.token UTF8String];
-  const char *displayName = [self.videoView.displayName UTF8String];
-  const char *resourceId = [self.videoView.resourceId UTF8String];
-
- [self.connector Connect:host Token:token DisplayName:displayName ResourceId:resourceId Connect:self];
- [self.videoView setConnecting:YES];
+    const char *host = [self.videoView.host UTF8String];
+    const char *token = [self.videoView.token UTF8String];
+    const char *displayName = [self.videoView.displayName UTF8String];
+    const char *resourceId = [self.videoView.resourceId UTF8String];
+    
+    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:resourceId Connect:self];
+    [self.videoView setConnecting:YES];
 }
 
 RCT_EXPORT_METHOD(disconnect) {
-  [self.connector Disconnect];
-  [self.videoView setConnected:NO];
+    [self.connector Disconnect];
+    [self.videoView setConnected:NO];
 }
 
 RCT_EXPORT_METHOD(switchCamera) {
-  [self.connector CycleCamera];
+    [self.connector CycleCamera];
 }
 
 #pragma mark IConnect methods
 
 - (void)OnSuccess {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.videoView setConnecting:NO];
-    self.connected = YES;
-    if (self.videoView.onConnect) {
-      self.videoView.onConnect(@{});
-    }
-  });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.videoView setConnecting:NO];
+        self.connected = YES;
+        if (self.videoView.onConnect) {
+            self.videoView.onConnect(@{});
+        }
+    });
 }
 
 - (void)OnFailure:(ConnectorFailReason)reason {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.videoView setConnecting:NO];
-    self.connected = NO;
-    if (self.videoView.onFailure) {
-    self.videoView.onFailure(@{
-                               @"reason": @(reason)
-                               });
-    }
-  });
-  
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.videoView setConnecting:NO];
+        self.connected = NO;
+        if (self.videoView.onFailure) {
+            self.videoView.onFailure(@{@"reason": @(reason)});
+        }
+    });
+    
 }
 
 - (void)OnDisconnected:(ConnectorDisconnectReason)reason {
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self.videoView setConnecting:NO];
-    self.connected = NO;
-    if (self.videoView.onDisconnect) {
-      self.videoView.onDisconnect(@{
-                                    @"reason": @(reason)
-                                    });
-    }
-  });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.videoView setConnecting:NO];
+        self.connected = NO;
+        if (self.videoView.onDisconnect) {
+            self.videoView.onDisconnect(@{@"reason": @(reason)});
+        }
+    });
 }
 
 - (void)viewDidMoveToSuperview {
-  [VidyoClientConnector Initialize];
-  [self.videoView setNeedsLayout];
-  [self.videoView layoutIfNeeded];
-  UIView *videoContainerView = self.videoView.videoContainerView;
-  self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
- [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
+    [VidyoClientConnector Initialize];
+    [self.videoView setNeedsLayout];
+    [self.videoView layoutIfNeeded];
+    UIView *videoContainerView = self.videoView.videoContainerView;
+    self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
+    [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
 }
 
 - (void)cameraButtonTapped:(UIButton *)sender {
-  [self.connector CycleCamera];
+    BOOL result = [self.connector SetCameraPrivacy:!self.isCameraOn];
+    if (result) {
+        self.cameraOn = !self.isCameraOn;
+    }
 }
 
 - (void)connectButtonTapped:(UIButton *)sender {
-  if (self.isConnected) {
-    [self disconnect];
-  } else {
-    [self connectToRoom];
-  }
+    if (self.isConnected) {
+        [self disconnect];
+    } else {
+        [self connectToRoom];
+    }
 }
 
 - (void)setConnected:(BOOL)connected {
-  _connected = connected;
-  [self.videoView setConnected:connected];
+    _connected = connected;
+    [self.videoView setConnected:connected];
+}
+
+- (void)setCameraOn:(BOOL)cameraOn {
+    _cameraOn = cameraOn;
+    [self.videoView setCameraOn:cameraOn];
 }
 
 @end
+

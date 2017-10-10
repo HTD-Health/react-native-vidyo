@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CAF77DCF1F8CAE57002E9685 /* RNTMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCB1F8CAE57002E9685 /* RNTMapManager.m */; };
+		88DAA1441F8CBE9800CF69E6 /* VidyoClientIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */; };
 		CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */; };
 		CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */; };
 /* End PBXBuildFile section */
@@ -26,8 +26,9 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNTVideo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNTVideo.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VidyoClientIOS.framework; path = ../../../ios/VidyoClientIOS.framework; sourceTree = "<group>"; };
+		88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidyoClientIOS.framework; sourceTree = "<group>"; };
 		CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoView.h; sourceTree = "<group>"; };
-		CAF77DCB1F8CAE57002E9685 /* RNTMapManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTMapManager.m; sourceTree = "<group>"; };
 		CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoView.m; sourceTree = "<group>"; };
 		CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoManager.h; sourceTree = "<group>"; };
 		CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoManager.m; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88DAA1441F8CBE9800CF69E6 /* VidyoClientIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,13 +57,22 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				CAF77DCB1F8CAE57002E9685 /* RNTMapManager.m */,
 				CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */,
 				CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */,
 				CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */,
 				CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				88DAA1281F8CBC0000CF69E6 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		88DAA1281F8CBC0000CF69E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */,
+				88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +131,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAF77DCF1F8CAE57002E9685 /* RNTMapManager.m in Sources */,
 				CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */,
 				CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */,
 			);
@@ -206,11 +216,13 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../../node_modules/react-native/React/**",
+					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -222,6 +234,7 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

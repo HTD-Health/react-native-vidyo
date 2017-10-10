@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88DAA1441F8CBE9800CF69E6 /* VidyoClientIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */; };
 		CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */; };
 		CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */; };
+		CAF77E641F8CD323002E9685 /* VidyoClientIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +32,7 @@
 		CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoView.m; sourceTree = "<group>"; };
 		CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoManager.h; sourceTree = "<group>"; };
 		CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoManager.m; sourceTree = "<group>"; };
+		CAF77E171F8CCED9002E9685 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VidyoClientIOS.framework; path = "../../../../../../Downloads/VidyoClient-iOSSDK 3/lib/ios/VidyoClientIOS.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88DAA1441F8CBE9800CF69E6 /* VidyoClientIOS.framework in Frameworks */,
+				CAF77E641F8CD323002E9685 /* VidyoClientIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +70,7 @@
 		88DAA1281F8CBC0000CF69E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAF77E171F8CCED9002E9685 /* VidyoClientIOS.framework */,
 				88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */,
 				88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */,
 			);
@@ -101,7 +103,7 @@
 		58B511D31A9E6C8500147676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
@@ -139,6 +141,80 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		248124E0428449969FC5AEA1 /* DebugSchema */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = DebugSchema;
+		};
+		3E82E324C2C74E249694670E /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
 		58B511ED1A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -216,13 +292,13 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios/";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../../node_modules/react-native/React/**",
-					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
+					"$(SRCROOT)/../ios/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -247,6 +323,40 @@
 			};
 			name = Release;
 		};
+		9BE55844A8A64D8C9B6EAAC2 /* DebugSchema */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios/";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+					"$(SRCROOT)/../../node_modules/react-native/React/**",
+					"$(SRCROOT)/../ios/VidyoClientIOS.framework/Headers/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = RNTVideo;
+				SKIP_INSTALL = YES;
+			};
+			name = DebugSchema;
+		};
+		9D2E7B623A894FA5A4A10DDE /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../React/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = RNTVideo;
+				SKIP_INSTALL = YES;
+			};
+			name = Staging;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -255,6 +365,8 @@
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
 				58B511EE1A9E6C8500147676 /* Release */,
+				248124E0428449969FC5AEA1 /* DebugSchema */,
+				3E82E324C2C74E249694670E /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -264,6 +376,8 @@
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,
 				58B511F11A9E6C8500147676 /* Release */,
+				9BE55844A8A64D8C9B6EAAC2 /* DebugSchema */,
+				9D2E7B623A894FA5A4A10DDE /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -20,6 +20,7 @@
 @property (nonatomic, weak) id<RNTVideoViewDelegate> delegate;
 @property (nonatomic, weak, readonly) UIView *videoContainerView;
 
+@property (nonatomic, assign) BOOL hudHidden;
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, copy) NSString *displayName;
@@ -29,9 +30,9 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onDisconnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onFailure;
 
-
 - (void)setConnected:(BOOL)connected;
 - (void)setConnecting:(BOOL)connecting;
-
+- (void)setCameraOn:(BOOL)on;
 
 @end
+

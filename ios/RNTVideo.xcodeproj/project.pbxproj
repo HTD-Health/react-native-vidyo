@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885B224B1F8D0C59008DCAFF /* RNTVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */; };
 		CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */; };
 		CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */; };
 		CAF77E641F8CD323002E9685 /* VidyoClientIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */; };
@@ -26,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNTVideo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNTVideo.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		885B22491F8D0C59008DCAFF /* RNTVideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTVideoButton.h; sourceTree = "<group>"; };
+		885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTVideoButton.m; sourceTree = "<group>"; };
+		885B224C1F8D0C7E008DCAFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VidyoClientIOS.framework; path = ../../../ios/VidyoClientIOS.framework; sourceTree = "<group>"; };
 		88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidyoClientIOS.framework; sourceTree = "<group>"; };
 		CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoView.h; sourceTree = "<group>"; };
@@ -62,6 +66,9 @@
 				CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */,
 				CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */,
 				CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */,
+				885B22491F8D0C59008DCAFF /* RNTVideoButton.h */,
+				885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */,
+				885B224C1F8D0C7E008DCAFF /* Images.xcassets */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				88DAA1281F8CBC0000CF69E6 /* Frameworks */,
 			);
@@ -133,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				885B224B1F8D0C59008DCAFF /* RNTVideoButton.m in Sources */,
 				CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */,
 				CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */,
 			);

@@ -1,6 +1,8 @@
 {
-  "name": "RNTVideo",
+  "name": "react-native-vidyo",
   "version": "0.0.1",
+  "description": "React Native Vidyo",
   "keywords": "react-native",
-  "main": "index.js"
+  "main": "index.js",
+  "license": "MIT"
 }

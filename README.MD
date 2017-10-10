@@ -1,11 +1,11 @@
 # react-native-video
-
+Plugin is under heavy development
 
 ## Installation
 
 ### iOS
 
-1.
+1. `npm i --save https://github.com/htdevelopers/react-native-vidyo`
 2. Download Vidyo iOS Package from here `https://developer.vidyo.io/packages`
 3. Extract the archive and search its contents for `VidyoClientIOS.framework`
 4. Paste the framework to the `<appplication_name>/ios/`
@@ -20,12 +20,9 @@
         <string>$(AppIdentifierPrefix)<Your Bundle Identifier></string>
     </array>
 `
-
-
 ### Android
 
 WIP
-
 
 
 ## USAGE
@@ -37,7 +34,7 @@ WIP
 <Vidyo
     host={VIDYO_HOST}
     token={TOKEN}
-    displayName={USER_DISPLAY_NAME
+    displayName={USER_DISPLAY_NAME}
     resourceId={ROOM_ID}
 />
 ```

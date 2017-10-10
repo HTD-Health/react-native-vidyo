@@ -1,39 +1,8 @@
 {
   "name": "react-native-vidyo",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/htdevelopers/react-native-vidyo.git"
-  },
-  "version": "1.0.2",
-  "description": "Vidyo for React Native.",
+  "version": "0.0.1",
+  "description": "React Native Vidyo",
+  "keywords": "react-native",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "standard 'src/**/*.js'",
-    "lint:fix": "standard 'src/**/*.js' --fix",
-    "ci": "yarn lint"
-  },
-  "standard": {
-    "parser": "babel-eslint"
-  },
-  "keywords": [
-    "react-native"
-  ],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "gulp-react-docs": "^0.1.2",
-    "react-docgen": "^2.15.0",
-    "standard": "^10.0.3"
-  },
-  "dependencies": {
-    "del": "^3.0.0",
-    "doctoc": "^1.3.0",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-tap": "^1.0.1",
-    "prop-types": "^15.5.10"
-  }
+  "license": "MIT"
 }

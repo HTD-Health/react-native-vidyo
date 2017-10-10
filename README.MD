@@ -22,7 +22,8 @@ Plugin is under heavy development
 ```
 ### Android
 
-Work in progress
+1. `npm i --save https://github.com/htdevelopers/react-native-vidyo`
+2. Run `react-native link`
 
 
 ## USAGE

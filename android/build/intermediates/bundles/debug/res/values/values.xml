@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">vidyoimplementation</string>
+    <string name="cannot_connect">Cannot connect</string>
+</resources>

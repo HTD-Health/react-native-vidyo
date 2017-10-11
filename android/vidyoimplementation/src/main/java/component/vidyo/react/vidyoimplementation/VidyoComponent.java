@@ -8,7 +8,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
  */
 
 public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManager<VidyoView> {
-    private static final String COMPONENT_NAME = "VidyoComponent";
+    private static final String COMPONENT_NAME = "Vidyo";
 
     @Override
     public String getName() {

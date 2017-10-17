@@ -45,6 +45,7 @@ public class VidyoView extends ConstraintLayout implements
 
     private FrameLayout imageContainer;
     private ImageView endCallButton;
+    private ImageView disableCamera;
     private ProgressBar progress;
     private TextView errorText;
 
@@ -52,6 +53,7 @@ public class VidyoView extends ConstraintLayout implements
     private VIDYO_CONNECTOR_STATE vidyoConnectorState = VIDYO_CONNECTOR_STATE.VC_DISCONNECTED;
     private VidyoConnector vidyoConnector = null;
     private boolean vidyoConnectorConstructed = false;
+    private boolean cameraActive = true;
     private WeakReference<ThemedReactContext> reactContext;
 
     private String host;
@@ -112,6 +114,7 @@ public class VidyoView extends ConstraintLayout implements
         endCallButton = (ImageView) findViewById(R.id.endCallButton);
         progress = (ProgressBar) findViewById(R.id.connectProgress);
         errorText = (TextView) findViewById(R.id.errorText);
+        disableCamera = (ImageView) findViewById(R.id.changeCameraStateButton);
 
         if (reactContext.get() != null) {
             Connector.SetApplicationUIContext(reactContext.get().getCurrentActivity());
@@ -123,6 +126,13 @@ public class VidyoView extends ConstraintLayout implements
             @Override
             public void onClick(View view) {
                 stop();
+            }
+        });
+
+        disableCamera.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disableCamera();
             }
         });
     }
@@ -147,6 +157,16 @@ public class VidyoView extends ConstraintLayout implements
         this.userName = userName;
     }
 
+    public void showButtons(){
+        this.disableCamera.setVisibility(VISIBLE);
+        this.endCallButton.setVisibility(VISIBLE);
+    }
+
+    public void hideButtons(){
+        this.endCallButton.setVisibility(GONE);
+        this.disableCamera.setVisibility(GONE);
+    }
+
     @Override
     public void requestLayout() {
         super.requestLayout();
@@ -156,15 +176,11 @@ public class VidyoView extends ConstraintLayout implements
         Log.d(TAG, "start");
         ViewTreeObserver viewTreeObserver = imageContainer.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
-            Log.d(TAG, "observer alive");
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    Log.d(TAG, "OnGlobalLayout");
                     imageContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    // If the vidyo connector was not previously successfully constructed then construct it
                     checkVidyoConnectionAndReconnect();
-                    connect();
                 }
             });
             viewTreeObserver.dispatchOnGlobalLayout();
@@ -189,6 +205,13 @@ public class VidyoView extends ConstraintLayout implements
         EventEmitter.emmitVidyoConnectionEnd(reactContext.get(), getId());
     }
 
+    public void disableCamera(){
+        if(vidyoConnector != null) {
+            cameraActive = !cameraActive;
+            vidyoConnector.SetCameraPrivacy(cameraActive);
+        }
+    }
+
     public void connect() {
         if (vidyoConnectorState != VIDYO_CONNECTOR_STATE.VC_CONNECTED && vidyoConnector != null) {
             progress.setVisibility(VISIBLE);
@@ -203,17 +226,15 @@ public class VidyoView extends ConstraintLayout implements
                     resourceId,
                     this)) {
                 onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Connection failed");
-                Log.d(TAG, "Status: " + false);
-            } else
-                Log.d(TAG, "Status: " + true);
+            }
         }
     }
 
     private void checkVidyoConnectionAndReconnect() {
         if (!vidyoConnectorConstructed) {
             if (vidyoClientInitialized) {
-                connectVidyo();
-
+                createVidyoConnector();
+                refreshView();
             } else {
                 Log.d(TAG, "ERROR: VidyoClientInitialize failed - not constructing VidyoConnector ...");
             }
@@ -222,7 +243,7 @@ public class VidyoView extends ConstraintLayout implements
         }
     }
 
-    public void connectVidyo() {
+    public void createVidyoConnector() {
         vidyoConnector = new VidyoConnector(imageContainer,
                 VidyoConnector.VidyoConnectorViewStyle.VIDYO_CONNECTORVIEWSTYLE_Default,
                 15,
@@ -231,8 +252,6 @@ public class VidyoView extends ConstraintLayout implements
                 0);
 
         vidyoConnectorConstructed = true;
-
-        refreshView();
 
         if (!vidyoConnector.RegisterNetworkInterfaceEventListener(VidyoView.this)) {
             Log.d(TAG, "VidyoConnector RegisterNetworkInterfaceEventListener failed");
@@ -378,5 +397,4 @@ public class VidyoView extends ConstraintLayout implements
 
         }
     }
-
 }

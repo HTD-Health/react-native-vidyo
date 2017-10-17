@@ -1,5 +1,6 @@
 package com.react.vidyo;
 
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 
@@ -8,7 +9,8 @@ import com.facebook.react.uimanager.annotations.ReactProp;
  */
 
 public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManager<VidyoView> {
-    private static final String COMPONENT_NAME = "Vidyo";
+    private static final String COMPONENT_NAME = "RNTVideo";
+    private VidyoView currentView;
 
     @Override
     public String getName() {
@@ -17,7 +19,8 @@ public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManag
 
     @Override
     protected VidyoView createViewInstance(ThemedReactContext reactContext) {
-        return new VidyoView(reactContext);
+        currentView = new VidyoView(reactContext);
+        return currentView;
     }
 
     @ReactProp(name = "height", defaultInt = 400)
@@ -48,5 +51,29 @@ public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManag
     @ReactProp(name = "roomId")
     public void setRoomId(VidyoView view, String roomName) {
         view.setResourceId(roomName);
+    }
+
+    @ReactProp(name = "hubHidden", defaultBoolean = false)
+    public void setHudHidden(VidyoView view, boolean hidden){
+        if(hidden){
+            view.hideButtons();
+        }else{
+            view.showButtons();
+        }
+    }
+
+    @ReactMethod
+    public void connect(){
+         currentView.connect();
+    }
+
+    @ReactMethod
+    public void disconnect(){
+        currentView.disconnect();
+    }
+
+    @ReactMethod
+    public void disableCamera(){
+        currentView.disableCamera();
     }
 }

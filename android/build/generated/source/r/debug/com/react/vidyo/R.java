@@ -2299,11 +2299,11 @@ containing a value of this type.
         public static int centerCrop=0x7f0c0022;
         public static int centerInside=0x7f0c0023;
         public static int chains=0x7f0c0011;
-        public static int changeCameraStateButton=0x7f0c0060;
+        public static int changeCameraStateButton=0x7f0c0062;
         public static int checkbox=0x7f0c0047;
         public static int chronometer=0x7f0c006b;
         public static int collapseActionView=0x7f0c002d;
-        public static int connectProgress=0x7f0c0061;
+        public static int connectProgress=0x7f0c0060;
         public static int contentPanel=0x7f0c0040;
         public static int custom=0x7f0c0044;
         public static int customPanel=0x7f0c0043;
@@ -2314,7 +2314,7 @@ containing a value of this type.
         public static int end=0x7f0c002a;
         public static int endCallButton=0x7f0c005f;
         public static int end_padder=0x7f0c0070;
-        public static int errorText=0x7f0c0062;
+        public static int errorText=0x7f0c0061;
         public static int expand_activities_button=0x7f0c0036;
         public static int expanded_menu=0x7f0c0046;
         public static int fitCenter=0x7f0c0024;

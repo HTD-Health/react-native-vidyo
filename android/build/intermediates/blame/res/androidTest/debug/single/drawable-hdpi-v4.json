@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_deactivate_camera.png",
+        "source": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_deactivate_camera.png"
+    },
+    {
         "merged": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_end_call.png",
         "source": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_end_call.png"
     },
@@ -14,5 +18,9 @@
     {
         "merged": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_end_call.png",
         "source": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_end_call.png"
+    },
+    {
+        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_end_call.png",
+        "source": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_end_call.png"
     }
 ]

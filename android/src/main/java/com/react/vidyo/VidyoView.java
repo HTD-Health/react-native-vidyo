@@ -2,6 +2,7 @@ package com.react.vidyo;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.provider.CalendarContract;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,19 +16,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.vidyo.VidyoClient.Connector.Connector;
 import com.vidyo.VidyoClient.Connector.VidyoConnector;
 import com.vidyo.VidyoClient.Endpoint.VidyoLogRecord;
 import com.vidyo.VidyoClient.VidyoNetworkInterface;
-
-import java.lang.ref.WeakReference;
-
-/**
- * Created by patrykjablonski on 11.10.2017.
- */
 
 public class VidyoView extends ConstraintLayout implements
         VidyoConnector.IConnect,
@@ -54,15 +48,28 @@ public class VidyoView extends ConstraintLayout implements
     private VidyoConnector vidyoConnector = null;
     private boolean vidyoConnectorConstructed = false;
     private boolean cameraActive = true;
-    private WeakReference<ThemedReactContext> reactContext;
+    private static ThemedReactContext reactContext = null;
 
     private String host;
     private String token;
     private String userName;
     private String resourceId;
+    /** View methods **/
 
-    public VidyoView(@NonNull Context context) {
+    private final Runnable mLayoutRunnable = new Runnable() {
+        @Override
+        public void run() {
+            measure(
+                    MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(getHeight(), MeasureSpec.EXACTLY));
+            layout(getLeft(), getTop(), getRight(), getBottom());
+        }
+    };
+
+    public VidyoView(@NonNull ThemedReactContext context) {
         super(context);
+        reactContext = context;
+
         setUp();
     }
 
@@ -105,9 +112,6 @@ public class VidyoView extends ConstraintLayout implements
             }
         });
 
-        reactContext = new WeakReference<>((ThemedReactContext) getContext());
-
-
         setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         imageContainer = (FrameLayout) findViewById(R.id.video_container);
@@ -116,16 +120,14 @@ public class VidyoView extends ConstraintLayout implements
         errorText = (TextView) findViewById(R.id.errorText);
         disableCamera = (ImageView) findViewById(R.id.changeCameraStateButton);
 
-        if (reactContext.get() != null) {
-            Connector.SetApplicationUIContext(reactContext.get().getCurrentActivity());
-        }
+        Connector.SetApplicationUIContext(reactContext.getCurrentActivity());
 
         vidyoClientInitialized = Connector.Initialize();
 
         endCallButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                stop();
+                disconnect();
             }
         });
 
@@ -167,9 +169,11 @@ public class VidyoView extends ConstraintLayout implements
         this.disableCamera.setVisibility(GONE);
     }
 
+
     @Override
     public void requestLayout() {
         super.requestLayout();
+        post(mLayoutRunnable);
     }
 
     public void start() {
@@ -201,8 +205,9 @@ public class VidyoView extends ConstraintLayout implements
             vidyoConnector.Disconnect();
 
         }
+
         Connector.Uninitialize();
-        EventEmitter.emmitVidyoConnectionEnd(reactContext.get(), getId());
+        EventEmitter.emmitVidyoConnectionEnd(reactContext, getId());
     }
 
     public void disableCamera(){
@@ -322,7 +327,7 @@ public class VidyoView extends ConstraintLayout implements
     public void OnSuccess() {
         Log.d(TAG, "Success, connected");
         onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTED, "Connected");
-        EventEmitter.emmitVidyoConnected(reactContext.get(), getId());
+        EventEmitter.emmitVidyoConnected(reactContext, getId());
     }
 
 
@@ -330,7 +335,7 @@ public class VidyoView extends ConstraintLayout implements
     public void OnFailure(VidyoConnector.VidyoConnectorFailReason vidyoConnectorFailReason) {
         onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Connected");
         Log.d(TAG, vidyoConnectorFailReason.toString());
-        EventEmitter.emmitVidyoConnectionFailure(reactContext.get(), getId(), vidyoConnectorFailReason.toString());
+        EventEmitter.emmitVidyoConnectionFailure(reactContext, getId(), vidyoConnectorFailReason.toString());
         Log.d(TAG, "On failure = " + vidyoConnectorFailReason.toString());
     }
 
@@ -378,7 +383,7 @@ public class VidyoView extends ConstraintLayout implements
 
         vidyoConnectorState = state;
 
-        ThemedReactContext context = reactContext.get();
+        ThemedReactContext context = reactContext;
         if (context != null && context.getCurrentActivity() != null) {
             context.getCurrentActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -390,7 +395,7 @@ public class VidyoView extends ConstraintLayout implements
                         hideProgress();
                         errorText.setVisibility(VISIBLE);
                         errorText.setText(getContext().getString(R.string.cannot_connect));
-                        EventEmitter.emmitVidyoConnectionFailure(reactContext.get(), getId(), "cannot connect");
+                        EventEmitter.emmitVidyoConnectionFailure(reactContext, getId(), "cannot connect");
                     }
                 }
             });

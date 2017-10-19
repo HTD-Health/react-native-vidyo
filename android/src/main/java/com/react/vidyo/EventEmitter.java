@@ -2,16 +2,13 @@ package com.react.vidyo;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
-/**
- * Created by patrykjablonski on 11.10.2017.
- */
-
 class EventEmitter {
-    private static final String CONNECTION_STOP = "onDisconnected";
-    private static final String CONNECTION_START = "onConnected";
+    private static final String CONNECTION_STOP = "onDisconnect";
+    private static final String CONNECTION_START = "onConnect";
     private static final String CONNECTION_FAILURE = "onFailure";
 
     private static final String FAILURE_DATA = "errorText";
@@ -32,8 +29,9 @@ class EventEmitter {
 
     private static void emit(ThemedReactContext context, int eventId, String eventName, WritableMap params){
         if(context != null) {
-            context.getJSModule(RCTEventEmitter.class)
-                    .receiveEvent(eventId, eventName, params);
+            context
+                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                    .emit(eventName, params);
         }
     }
 }

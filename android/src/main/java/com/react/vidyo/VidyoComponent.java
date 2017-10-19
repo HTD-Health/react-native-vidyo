@@ -53,7 +53,7 @@ public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManag
         view.setResourceId(roomName);
     }
 
-    @ReactProp(name = "hubHidden", defaultBoolean = false)
+    @ReactProp(name = "hudHidden", defaultBoolean = false)
     public void setHudHidden(VidyoView view, boolean hidden){
         if(hidden){
             view.hideButtons();

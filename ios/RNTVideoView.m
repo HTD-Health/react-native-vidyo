@@ -42,7 +42,6 @@
 - (void)setUp {
     UIView *videoContainerView = [UIView new];
     videoContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-    videoContainerView.backgroundColor = [UIColor blueColor];
     [self addSubview:videoContainerView];
     self.videoContainerView = videoContainerView;
     
@@ -73,6 +72,7 @@
         buttonsContainer.contentMode = UIViewContentModeScaleAspectFill;
         buttonsContainer.translatesAutoresizingMaskIntoConstraints = NO;
         buttonsContainer.backgroundColor = [UIColor clearColor];
+        buttonsContainer.userInteractionEnabled = YES;
         [buttonsContainer addSubview:buttonsStackView];
         
         [self addSubview:buttonsContainer];

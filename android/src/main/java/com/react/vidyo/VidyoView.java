@@ -184,7 +184,7 @@ public class VidyoView extends ConstraintLayout implements
                 @Override
                 public void onGlobalLayout() {
                     imageContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    checkVidyoConnectionAndReconnect();
+                    checkVidyoConnection();
                 }
             });
             viewTreeObserver.dispatchOnGlobalLayout();
@@ -230,12 +230,12 @@ public class VidyoView extends ConstraintLayout implements
                     userName,
                     resourceId,
                     this)) {
-                onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Connection failed");
+                onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Failed to connect");
             }
         }
     }
 
-    private void checkVidyoConnectionAndReconnect() {
+    private void checkVidyoConnection() {
         if (!vidyoConnectorConstructed) {
             if (vidyoClientInitialized) {
                 createVidyoConnector();
@@ -327,27 +327,30 @@ public class VidyoView extends ConstraintLayout implements
     public void OnSuccess() {
         Log.d(TAG, "Success, connected");
         onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTED, "Connected");
-        EventEmitter.emmitVidyoConnected(reactContext, getId());
     }
 
 
     @Override
     public void OnFailure(VidyoConnector.VidyoConnectorFailReason vidyoConnectorFailReason) {
-        onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Connected");
+        onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Failed to connect");
         Log.d(TAG, vidyoConnectorFailReason.toString());
-        EventEmitter.emmitVidyoConnectionFailure(reactContext, getId(), vidyoConnectorFailReason.toString());
         Log.d(TAG, "On failure = " + vidyoConnectorFailReason.toString());
     }
 
     @Override
     public void OnDisconnected(VidyoConnector.VidyoConnectorDisconnectReason vidyoConnectorDisconnectReason) {
+        VIDYO_CONNECTOR_STATE state;
+        String statusText;
         if (vidyoConnectorDisconnectReason == VidyoConnector.VidyoConnectorDisconnectReason.VIDYO_CONNECTORDISCONNECTREASON_Disconnected) {
             Log.d(TAG, "OnDisconnected: successfully disconnected, reason = " + vidyoConnectorDisconnectReason.toString());
-            onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_DISCONNECTED, "Disconnected");
+            state = VIDYO_CONNECTOR_STATE.VC_DISCONNECTED;
+            statusText = "Disconnected";
         } else {
             Log.d(TAG, "OnDisconnected: successfully disconnected, reason = " + vidyoConnectorDisconnectReason.toString());
-            onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_DISCONNECTED_UNEXPECTED, "Unexpected disconnection");
+            state = VIDYO_CONNECTOR_STATE.VC_DISCONNECTED_UNEXPECTED;
+            statusText = "Unexpected disconnection";
         }
+        onConnectorStateUpdeted(state, statusText);
     }
 
     @Override
@@ -388,18 +391,32 @@ public class VidyoView extends ConstraintLayout implements
             context.getCurrentActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (vidyoConnectorState == VIDYO_CONNECTOR_STATE.VC_CONNECTED) {
-                        hideProgress();
-                        refreshView();
-                    } else if (vidyoConnectorState == VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE) {
-                        hideProgress();
-                        errorText.setVisibility(VISIBLE);
-                        errorText.setText(getContext().getString(R.string.cannot_connect));
-                        EventEmitter.emmitVidyoConnectionFailure(reactContext, getId(), "cannot connect");
-                    }
+                    checkConnectionState(vidyoConnectorState);
                 }
             });
 
         }
     }
+
+    private void checkConnectionState(VIDYO_CONNECTOR_STATE state){
+        if (state == VIDYO_CONNECTOR_STATE.VC_CONNECTED) {
+            onStateConnected();
+        } else if (state == VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE) {
+            onStateConnectionFailure();
+        }
+    }
+
+    private void onStateConnected(){
+        hideProgress();
+        refreshView();
+        EventEmitter.emmitVidyoConnected(reactContext, getId());
+    }
+
+    private void onStateConnectionFailure(){
+        hideProgress();
+        errorText.setVisibility(VISIBLE);
+        errorText.setText(getContext().getString(R.string.cannot_connect));
+        EventEmitter.emmitVidyoConnectionFailure(reactContext, getId(), "cannot connect");
+    }
 }
+

@@ -5,7 +5,7 @@ Plugin is under heavy development
 
 ### iOS
 
-1. `npm i --save https://github.com/htdevelopers/react-native-vidyo`
+1. `npm i --save https://github.com/HealthTechDevelopers/react-native-vidyo`
 2. Download Vidyo iOS Package from here `https://developer.vidyo.io/packages`
 3. Extract the archive and search its contents for `VidyoClientIOS.framework`
 4. Paste the framework to the `<appplication_name>/ios/`

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-v23/abc_control_background_material.xml"
+    }
+]

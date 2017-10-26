@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">VidyoComponentLib</string>
+    <string name="app_name">vidyoimplementation</string>
     <string name="cannot_connect">Cannot connect</string>
 </resources>

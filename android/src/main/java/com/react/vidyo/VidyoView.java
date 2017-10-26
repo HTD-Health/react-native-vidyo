@@ -175,7 +175,7 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     public void start() {
-        Log.d(TAG, "start");
+        Log.d(TAG, "Start");
         ViewTreeObserver viewTreeObserver = imageContainer.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -191,7 +191,7 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     public void stop(){
-        Log.d(TAG, "stop");
+        Log.d(TAG, "Stop");
         if (vidyoConnectorConstructed) {
             vidyoConnector.SetMode(VidyoConnector.VidyoConnectorMode.VIDYO_CONNECTORMODE_Background);
         }
@@ -209,6 +209,7 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     public void disableCamera(){
+        Log.d(TAG, "Disable camera");
         if(vidyoConnector != null) {
             cameraActive = !cameraActive;
             vidyoConnector.SetCameraPrivacy(cameraActive);
@@ -216,6 +217,7 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     public void connect() {
+        Log.d(TAG, "Connect");
         if (vidyoConnectorState != VIDYO_CONNECTOR_STATE.VC_CONNECTED && vidyoConnector != null) {
             progress.setVisibility(VISIBLE);
             Log.d(TAG, "host: " + host);
@@ -405,6 +407,7 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     private void onStateConnected(){
+        Log.d(TAG, "State connected");
         hideProgress();
         refreshView();
         EventEmitter.emmitVidyoConnected((ThemedReactContext) getContext(), getId());

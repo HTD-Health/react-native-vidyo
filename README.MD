@@ -6,12 +6,11 @@ Plugin is under heavy development
 ### iOS
 
 1. `npm i --save https://github.com/HealthTechDevelopers/react-native-vidyo`
-2. Download Vidyo iOS Package from here `https://developer.vidyo.io/packages`
-3. Extract the archive and search its contents for `VidyoClientIOS.framework`
-4. Paste the framework to the `<appplication_name>/ios/`
-5. Add VidyoClientIOS.framework to Embedded Binaries
-6. Run `react-native link`
-7. Add This entitlements to your <application_name>/<application_name>.entitlements
+2. Add reference to `node_modules/react-native-vidyo/ios/VidyoClientIOS.framework` in **Embedded Binaries** section
+3. Add path to framework in **Framework Search Paths** `$(SRCROOT)/../node_modules/react-native-vidyo/ios`
+4. Add path in **Header Search Paths** `$(SRCROOT)/../node_modules/react-native-vidyo/ios/VidyoClientIOS.framework/Headers`
+5. Run `react-native link`
+6. Add This entitlements to your <application_name>/<application_name>.entitlements
 
 ```
     <key>keychain-access-groups</key>
@@ -19,6 +18,11 @@ Plugin is under heavy development
         <string>$(AppIdentifierPrefix)VidyoLicense</string>
         <string>$(AppIdentifierPrefix)<Your Bundle Identifier></string>
     </array>
+```
+7. Add this to **Info.plist**
+```
+	<key>NSMicrophoneUsageDescription</key>
+ 	<string>Video</string>
 ```
 ### Android
 
@@ -33,6 +37,8 @@ Plugin is under heavy development
 
 ```jsx
 <Vidyo
+    width={300}
+    heigth={400}
     host={VIDYO_HOST}
     token={TOKEN}
     displayName={USER_DISPLAY_NAME}

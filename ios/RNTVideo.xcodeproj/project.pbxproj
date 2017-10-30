@@ -10,7 +10,6 @@
 		885B224B1F8D0C59008DCAFF /* RNTVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */; };
 		CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */; };
 		CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */; };
-		CAF77E641F8CD323002E9685 /* VidyoClientIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,13 +29,11 @@
 		885B22491F8D0C59008DCAFF /* RNTVideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTVideoButton.h; sourceTree = "<group>"; };
 		885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTVideoButton.m; sourceTree = "<group>"; };
 		885B224C1F8D0C7E008DCAFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VidyoClientIOS.framework; path = ../../../ios/VidyoClientIOS.framework; sourceTree = "<group>"; };
 		88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidyoClientIOS.framework; sourceTree = "<group>"; };
 		CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoView.h; sourceTree = "<group>"; };
 		CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoView.m; sourceTree = "<group>"; };
 		CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoManager.h; sourceTree = "<group>"; };
 		CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoManager.m; sourceTree = "<group>"; };
-		CAF77E171F8CCED9002E9685 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VidyoClientIOS.framework; path = "../../../../../../Downloads/VidyoClient-iOSSDK 3/lib/ios/VidyoClientIOS.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAF77E641F8CD323002E9685 /* VidyoClientIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,9 +73,7 @@
 		88DAA1281F8CBC0000CF69E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CAF77E171F8CCED9002E9685 /* VidyoClientIOS.framework */,
 				88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */,
-				88DAA1291F8CBC0000CF69E6 /* VidyoClientIOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,13 +294,13 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ios/";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../../node_modules/react-native/React/**",
-					"$(SRCROOT)/../../../ios/VidyoClientIOS.framework/Headers/**",
+					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -323,6 +317,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
+					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -334,13 +329,13 @@
 		9BE55844A8A64D8C9B6EAAC2 /* DebugSchema */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios/";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
 					"$(SRCROOT)/../../node_modules/react-native/React/**",
-					"$(SRCROOT)/../ios/VidyoClientIOS.framework/Headers/**",
+					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -357,6 +352,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../React/**",
+					"$(SRCROOT)/VidyoClientIOS.framework/Headers/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";

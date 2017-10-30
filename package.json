@@ -4,5 +4,12 @@
   "description": "React Native Vidyo",
   "keywords": "react-native",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "extract-zip": "^1.6.5",
+    "path-absolute": "^1.0.0"
+  },
+  "scripts" : {
+    "postinstall" : "scripts/postinstall.js"
+  }
 }

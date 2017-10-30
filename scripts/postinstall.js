@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 const extract = require('extract-zip')
 const pathAbsolute = require('path-absolute')
 

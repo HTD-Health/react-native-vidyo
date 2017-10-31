@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { requireNativeComponent } from 'react-native'
-import NativeEventEmitter from './Emitter';
+import { requireNativeComponent, View } from 'react-native'
+// import NativeEventEmitter from './Emitter';
 
 class Video extends React.Component {
   componentWillMount() {
@@ -13,11 +13,11 @@ class Video extends React.Component {
   }
 
   addListener = (name) => {
-    if (!this.props.listeners[name]) {
-      this.props.listeners[name] = NativeEventEmitter.addListener(name, e =>
-        this.props[name](e)
-      );
-    }
+    // if (!this.props.listeners[name]) {
+    //   this.props.listeners[name] = NativeEventEmitter.addListener(name, e =>
+    //     this.props[name](e)
+    //   );
+    // }
   };
 
   removeListener = (name) => {

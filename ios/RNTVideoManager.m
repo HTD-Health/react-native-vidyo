@@ -28,6 +28,7 @@ RCT_EXPORT_VIEW_PROPERTY(host, NSString)
 RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
 RCT_EXPORT_VIEW_PROPERTY(roomId, NSString)
+RCT_EXPORT_VIEW_PROPERTY(onReady, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onConnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
@@ -100,6 +101,9 @@ RCT_EXPORT_METHOD(switchCamera) {
     UIView *videoContainerView = self.videoView.videoContainerView;
     self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
     [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
+    if (self.videoView.onReady) {
+        self.videoView.onReady(@{});
+    }
 }
 
 - (void)cameraButtonTapped:(UIButton *)sender {

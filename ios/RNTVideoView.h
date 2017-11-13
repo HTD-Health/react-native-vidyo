@@ -26,6 +26,7 @@
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, copy) NSString *roomId;
 
+@property (nonatomic, copy) RCTBubblingEventBlock onReady;
 @property (nonatomic, copy) RCTBubblingEventBlock onConnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onDisconnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onFailure;

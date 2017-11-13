@@ -63,7 +63,7 @@ public class VidyoComponent extends com.facebook.react.uimanager.SimpleViewManag
     }
 
     @ReactMethod
-    public void connect(){
+    public void connectToRoom(){
          currentView.connect();
     }
 

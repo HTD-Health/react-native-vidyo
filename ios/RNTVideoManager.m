@@ -27,7 +27,7 @@ RCT_EXPORT_VIEW_PROPERTY(hudHidden, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(host, NSString)
 RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
-RCT_EXPORT_VIEW_PROPERTY(resourceId, NSString)
+RCT_EXPORT_VIEW_PROPERTY(roomId, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onConnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
@@ -45,9 +45,9 @@ RCT_EXPORT_METHOD(connectToRoom) {
     const char *host = [self.videoView.host UTF8String];
     const char *token = [self.videoView.token UTF8String];
     const char *displayName = [self.videoView.displayName UTF8String];
-    const char *resourceId = [self.videoView.resourceId UTF8String];
+    const char *roomId = [self.videoView.roomId UTF8String];
     
-    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:resourceId Connect:self];
+    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:roomId Connect:self];
     [self.videoView setConnecting:YES];
 }
 

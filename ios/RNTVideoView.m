@@ -48,17 +48,17 @@
     if (!self.hudHidden) {
         RNTVideoButton *connectButton = [RNTVideoButton button];
         connectButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [connectButton setImage:[UIImage imageNamed:@"button-disconnect"] forState:UIControlStateSelected];
-        [connectButton setImage:[UIImage imageNamed:@"button-connect"] forState:UIControlStateNormal];
-        [connectButton setBackgroundImage:[UIImage imageNamed:@"button-oval-red-bg"] forState:UIControlStateSelected];
-        [connectButton setBackgroundImage:[UIImage imageNamed:@"button-oval-green-bg"] forState:UIControlStateNormal];
+        [connectButton setImage:[self loadImageNamed:@"button-disconnect"] forState:UIControlStateSelected];
+        [connectButton setImage:[self loadImageNamed:@"button-connect"] forState:UIControlStateNormal];
+        [connectButton setBackgroundImage:[self loadImageNamed:@"button-oval-red-bg"] forState:UIControlStateSelected];
+        [connectButton setBackgroundImage:[self loadImageNamed:@"button-oval-green-bg"] forState:UIControlStateNormal];
         connectButton.height = 86.0;
         [connectButton addTarget:self action:@selector(didTapConnectButton:) forControlEvents:UIControlEventTouchUpInside];
         
         RNTVideoButton *cameraButton = [RNTVideoButton button];
         cameraButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [cameraButton setImage:[UIImage imageNamed:@"button-turn-camera-off"] forState:UIControlStateNormal];
-        [cameraButton setBackgroundImage:[UIImage imageNamed:@"button-oval-transparent-bg"] forState:UIControlStateNormal];
+        [cameraButton setImage:[self loadImageNamed:@"button-turn-camera-off"] forState:UIControlStateNormal];
+        [cameraButton setBackgroundImage:[self loadImageNamed:@"button-oval-transparent-bg"] forState:UIControlStateNormal];
         cameraButton.height = 86.0;
         [cameraButton addTarget:self action:@selector(didTapCameraButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -68,7 +68,7 @@
         [buttonsStackView addArrangedSubview:connectButton];
         [buttonsStackView addArrangedSubview:cameraButton];
         
-        UIImageView *buttonsContainer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient"]];
+        UIImageView *buttonsContainer = [[UIImageView alloc] initWithImage:[self loadImageNamed:@"gradient"]];
         buttonsContainer.contentMode = UIViewContentModeScaleAspectFill;
         buttonsContainer.translatesAutoresizingMaskIntoConstraints = NO;
         buttonsContainer.backgroundColor = [UIColor clearColor];
@@ -163,6 +163,11 @@
 
 - (void)setCameraOn:(BOOL)on {
     [self.cameraButton setSelected:on];
+}
+
+- (UIImage *)loadImageNamed:(NSString *)imageName {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    return [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
 }
 
 @end

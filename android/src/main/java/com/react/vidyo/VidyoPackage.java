@@ -29,7 +29,7 @@ public class VidyoPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
-                new VidyoComponent()
+                new VidyoComponentManager()
         );
     }
 

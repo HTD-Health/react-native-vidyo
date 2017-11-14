@@ -27,10 +27,11 @@ RCT_EXPORT_VIEW_PROPERTY(hudHidden, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(host, NSString)
 RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
-RCT_EXPORT_VIEW_PROPERTY(resourceId, NSString)
-RCT_EXPORT_VIEW_PROPERTY(onConnect, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
-RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(roomId, NSString)
+RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnReady, onReady, RCTBubblingEventBlock)
+RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnConnect, onConnect, RCTBubblingEventBlock)
+RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnDisconnect, onDisconnect, RCTBubblingEventBlock)
+RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnFailure, onFailure, RCTBubblingEventBlock)
 
 - (UIView *)view {
     RNTVideoView *view = [RNTVideoView new];
@@ -45,9 +46,9 @@ RCT_EXPORT_METHOD(connectToRoom) {
     const char *host = [self.videoView.host UTF8String];
     const char *token = [self.videoView.token UTF8String];
     const char *displayName = [self.videoView.displayName UTF8String];
-    const char *resourceId = [self.videoView.resourceId UTF8String];
+    const char *roomId = [self.videoView.roomId UTF8String];
     
-    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:resourceId Connect:self];
+    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:roomId Connect:self];
     [self.videoView setConnecting:YES];
 }
 
@@ -58,6 +59,10 @@ RCT_EXPORT_METHOD(disconnect) {
 
 RCT_EXPORT_METHOD(switchCamera) {
     [self.connector CycleCamera];
+}
+
+RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
+    self.cameraOn = enabled;
 }
 
 #pragma mark IConnect methods
@@ -100,6 +105,9 @@ RCT_EXPORT_METHOD(switchCamera) {
     UIView *videoContainerView = self.videoView.videoContainerView;
     self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
     [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
+    if (self.videoView.onReady) {
+        self.videoView.onReady(@{});
+    }
 }
 
 - (void)cameraButtonTapped:(UIButton *)sender {

@@ -53,8 +53,7 @@ class Video extends React.Component {
     this.onDisconnectEvent.remove()
     this.onFailureEvent.remove()
   }
-
-
+  
   static connect () {
     if (IS_IOS) {
       RNTVideoManager.connectToRoom()
@@ -76,7 +75,6 @@ class Video extends React.Component {
       RNTVideoManager.toggleCamera(value)
     } else {
       RNTVideoManager.toggleCamera(findNodeHandle(this), value)
-
     }
   }
 

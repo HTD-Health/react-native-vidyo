@@ -47,7 +47,6 @@ public class VidyoView extends ConstraintLayout implements
     private VIDYO_CONNECTOR_STATE vidyoConnectorState = VIDYO_CONNECTOR_STATE.VC_DISCONNECTED;
     private VidyoConnector vidyoConnector = null;
     private boolean vidyoConnectorConstructed = false;
-    private boolean cameraActive = true;
 
     private String host;
     private String token;
@@ -183,6 +182,8 @@ public class VidyoView extends ConstraintLayout implements
                 public void onGlobalLayout() {
                     imageContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     checkVidyoConnection();
+
+                    EventEmitter.emitVidyoComponentReady((ThemedReactContext) getContext());
                 }
             });
             viewTreeObserver.dispatchOnGlobalLayout();
@@ -205,14 +206,21 @@ public class VidyoView extends ConstraintLayout implements
         }
 
         Connector.Uninitialize();
-        EventEmitter.emmitVidyoConnectionEnd((ThemedReactContext) getContext(), getId());
+        EventEmitter.emmitVidyoConnectionEnd((ThemedReactContext) getContext());
     }
 
     public void disableCamera(){
         Log.d(TAG, "Disable camera");
         if(vidyoConnector != null) {
-            cameraActive = !cameraActive;
-            vidyoConnector.SetCameraPrivacy(cameraActive);
+            vidyoConnector.SetCameraPrivacy(false);
+        }
+    }
+
+
+    public void enableCamera(){
+        Log.d(TAG, "Disable camera");
+        if(vidyoConnector != null) {
+            vidyoConnector.SetCameraPrivacy(true);
         }
     }
 
@@ -410,14 +418,14 @@ public class VidyoView extends ConstraintLayout implements
         Log.d(TAG, "State connected");
         hideProgress();
         refreshView();
-        EventEmitter.emmitVidyoConnected((ThemedReactContext) getContext(), getId());
+        EventEmitter.emmitVidyoConnected((ThemedReactContext) getContext());
     }
 
     private void onStateConnectionFailure(){
         hideProgress();
         errorText.setVisibility(VISIBLE);
         errorText.setText(getContext().getString(R.string.cannot_connect));
-        EventEmitter.emmitVidyoConnectionFailure((ThemedReactContext) getContext(), getId(), "cannot connect");
+        EventEmitter.emmitVidyoConnectionFailure((ThemedReactContext) getContext(), "cannot connect");
     }
 }
 

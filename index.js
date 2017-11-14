@@ -1,48 +1,63 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { requireNativeComponent, View } from 'react-native'
-// import NativeEventEmitter from './Emitter';
+import { requireNativeComponent, View, NativeModules, Platform, NativeEventEmitter, DeviceEventEmitter } from 'react-native'
 
 class Video extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.eventEmiter = Platform.OS === 'ios' ? new NativeEventEmitter(NativeModules.RNTVideoManager) : DeviceEventEmitter
+    this.onConnectEvent = null
+    this.onDisconnectEvent = null
+    this.onFailureEvent = null
+  }
+
   componentWillMount() {
-    this.props.listeners.forEach(listener => this.addListener(listener));
+    this.onConnectEvent = this.eventEmiter.addListener('RNTVidyoOnConnect', this.handleOnConnect)
+    this.onDisconnectEvent = this.eventEmiter.addListener('RNTVidyoOnDisconnect', this.handleOnDisconnect)
+    this.onFailureEvent = this.eventEmiter.addListener('RNTVidyoOnFailure', this.handleOnFailure)
   }
 
   componentWillUnmount() {
-    this.props.listeners.forEach(listener => this.removeListener(listener));
+    this.onConnectEvent.remove()
+    this.onDisconnectEvent.remove()
+    this.onFailureEvent.remove()
   }
 
-  addListener = (name) => {
-    // if (!this.props.listeners[name]) {
-    //   this.props.listeners[name] = NativeEventEmitter.addListener(name, e =>
-    //     this.props[name](e)
-    //   );
-    // }
-  };
 
-  removeListener = (name) => {
-    if (this.props.listeners[name]) {
-      this.props.listeners[name].remove();
-      delete this.props.listeners[name];
-    }
-  };
+  static connect () {
+    NativeModules.RNTVideoManager.connectToRoom()
+  }
+  
+  static disconnect () {
+    NativeModules.RNTVideoManager.disconnect()
+  }
+
+  static disconnect () {
+    NativeModules.RNTVideoManager.disableCamera()
+  }
+
+  handleOnConnect = (e) => {
+    if (typeof this.props.onConnect === 'function') { this.props.onConnect(e) }
+  }
+  handleOnDisconnect = (e) => {
+    if (typeof this.props.onDisconnect === 'function') { this.props.onDisconnect(e) }
+  }
+  handleOnFailure = (e) => {
+    if (typeof this.props.onFailure === 'function') { this.props.onFailure(e) }
+  }
 
   render () {
-    return <RNTVideo {...this.props} />
+    return <RNTVideo
+    {...this.props} />
   }
-}
-
-Video.defaultProps = {
-  listeners: ['onConnect', 'onDisconnect', 'onFailure',]
 }
 
 Video.propTypes = {
   host: PropTypes.string,
   token: PropTypes.string,
-  userName: PropTypes.string,
   roomId: PropTypes.string,
   displayName: PropTypes.string,
-  resourceId: PropTypes.string,
   hudHidden: PropTypes.bool,
   onConnect: PropTypes.func,
   onDisconnect: PropTypes.func,

@@ -13,7 +13,7 @@ import {
 const IS_IOS = Platform.OS === 'ios'
 const RNTVideoManager = NativeModules.RNTVideoManager
 
-if (IS_IOS) {
+if (!IS_IOS) {
   const commands = NativeModules.UIManager.RNTVideo.Commands;
   Object.keys(commands).forEach(command => {
       RNTVideoManager[command] = (handle, ...rawArgs) => {

@@ -24,8 +24,9 @@
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, copy) NSString *displayName;
-@property (nonatomic, copy) NSString *resourceId;
+@property (nonatomic, copy) NSString *roomId;
 
+@property (nonatomic, copy) RCTBubblingEventBlock onReady;
 @property (nonatomic, copy) RCTBubblingEventBlock onConnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onDisconnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onFailure;

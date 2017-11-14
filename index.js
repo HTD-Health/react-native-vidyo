@@ -1,24 +1,54 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { requireNativeComponent, View, NativeModules, Platform, NativeEventEmitter, DeviceEventEmitter } from 'react-native'
+import {
+  requireNativeComponent,
+  View,
+  NativeModules,
+  Platform,
+  NativeEventEmitter,
+  DeviceEventEmitter,
+  findNodeHandle 
+} from 'react-native'
+
+const IS_IOS = Platform.OS === 'ios'
+const RNTVideoManager = NativeModules.RNTVideoManager
+
+if (IS_IOS) {
+  const commands = NativeModules.UIManager.RNTVideo.Commands;
+  Object.keys(commands).forEach(command => {
+      RNTVideoManager[command] = (handle, ...rawArgs) => {
+      const args = rawArgs.map(arg => {
+        if (typeof arg === 'function') {
+          callbackMap.set(nextCallbackId, arg);
+          return nextCallbackId++;
+        }
+        return arg;
+      });
+      UIManager.dispatchViewManagerCommand(handle, commands[command], args);
+    };
+  });
+}
 
 class Video extends React.Component {
   constructor(props){
     super(props)
 
-    this.eventEmiter = Platform.OS === 'ios' ? new NativeEventEmitter(NativeModules.RNTVideoManager) : DeviceEventEmitter
+    this.eventEmiter = IS_IOS ? new NativeEventEmitter(NativeModules.RNTVideoManager) : DeviceEventEmitter
+    this.onReadyEvent = null
     this.onConnectEvent = null
     this.onDisconnectEvent = null
     this.onFailureEvent = null
   }
 
   componentWillMount() {
+    this.onReadyEvent = this.eventEmiter.addListener('RNTVidyoOnReady', this.handleOnReady)
     this.onConnectEvent = this.eventEmiter.addListener('RNTVidyoOnConnect', this.handleOnConnect)
     this.onDisconnectEvent = this.eventEmiter.addListener('RNTVidyoOnDisconnect', this.handleOnDisconnect)
     this.onFailureEvent = this.eventEmiter.addListener('RNTVidyoOnFailure', this.handleOnFailure)
   }
 
   componentWillUnmount() {
+    this.onReadyEvent.remove()
     this.onConnectEvent.remove()
     this.onDisconnectEvent.remove()
     this.onFailureEvent.remove()
@@ -26,17 +56,33 @@ class Video extends React.Component {
 
 
   static connect () {
-    NativeModules.RNTVideoManager.connectToRoom()
+    if (IS_IOS) {
+      RNTVideoManager.connectToRoom()
+    } else {
+      RNTVideoManager.connectToRoom(findNodeHandle(this))
+    }
   }
   
   static disconnect () {
-    NativeModules.RNTVideoManager.disconnect()
+    if (IS_IOS) {
+      RNTVideoManager.disconnect()
+    } else {
+      RNTVideoManager.disconnect(findNodeHandle(this))
+    }
   }
 
-  static disconnect () {
-    NativeModules.RNTVideoManager.disableCamera()
+  static toggleCamera(value) {
+    if (IS_IOS) {
+      RNTVideoManager.toggleCamera(value)
+    } else {
+      RNTVideoManager.toggleCamera(findNodeHandle(this), value)
+
+    }
   }
 
+  handleOnReady = (e) => {
+    if (typeof this.props.OnReady === 'function') { this.props.OnReady(e) }
+  }
   handleOnConnect = (e) => {
     if (typeof this.props.onConnect === 'function') { this.props.onConnect(e) }
   }
@@ -59,6 +105,7 @@ Video.propTypes = {
   roomId: PropTypes.string,
   displayName: PropTypes.string,
   hudHidden: PropTypes.bool,
+  onReady: PropTypes.func,
   onConnect: PropTypes.func,
   onDisconnect: PropTypes.func,
   onFailure: PropTypes.func,

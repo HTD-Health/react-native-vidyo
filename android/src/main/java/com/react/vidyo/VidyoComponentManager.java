@@ -19,6 +19,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
 
     public static final int COMMAND_CONNECT_TO_ROOM = 1;
     public static final int COMMAND_DISCONNECT = 2;
+    public static final int COMMAND_TOGGLE_CAMERA = 3;
 
     public VidyoComponentManager() {
         super();
@@ -74,7 +75,6 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
         }
     }
 
-    @ReactProp(name = "toggleCamera", defaultBoolean = true)
     public void toggleCamera(VidyoView view, boolean enabled){
         if(!enabled) {
             view.disableCamera();
@@ -100,6 +100,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
         return MapBuilder.<String, Integer>builder()
                 .put("connectToRoom", COMMAND_CONNECT_TO_ROOM)
                 .put("disconnect", COMMAND_DISCONNECT)
+                .put("toggleCamera", COMMAND_TOGGLE_CAMERA)
                 .build();
     }
 
@@ -112,6 +113,11 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
                 break;
             case COMMAND_DISCONNECT:
                 disconnect(root);
+                break;
+            case COMMAND_TOGGLE_CAMERA:
+                if(args != null) {
+                    toggleCamera(root, args.getBoolean(0));
+                }
                 break;
         }
     }

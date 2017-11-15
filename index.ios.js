@@ -43,6 +43,6 @@ Video.propTypes = {
   onFailure: PropTypes.func,
 }
 
-var RNTVideo = requireNativeComponent('RNTVideo', Video)
+var RNTVideo = requireNativeComponent('RNTVidyo', Video)
 
 module.exports = Video

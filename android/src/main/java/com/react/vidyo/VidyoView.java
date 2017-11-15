@@ -232,13 +232,17 @@ public class VidyoView extends ConstraintLayout implements
             Log.d(TAG, "token: " + token);
             Log.d(TAG, "userName: " + userName);
             Log.d(TAG, "resoureId: " + resourceId);
-            if (!vidyoConnector.Connect(
-                    host,
-                    token,
-                    userName,
-                    resourceId,
-                    this)) {
-                onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Failed to connect");
+            if(host != null && token != null && userName != null && resourceId != null) {
+                if (!vidyoConnector.Connect(
+                        host,
+                        token,
+                        userName,
+                        resourceId,
+                        this)) {
+                    onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Failed to connect");
+                }
+            }else{
+                EventEmitter.emmitVidyoConnectionFailure((ThemedReactContext) getContext(), "Not all required parameters were given");
             }
         }
     }

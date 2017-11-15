@@ -56,7 +56,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
         view.setHost(host);
     }
 
-    @ReactProp(name = "userName")
+    @ReactProp(name = "displayName")
     public void setUserName(VidyoView view, String userName) {
         view.setUserName(userName);
     }

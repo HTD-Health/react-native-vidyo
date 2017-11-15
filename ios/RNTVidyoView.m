@@ -1,15 +1,15 @@
 //
-//  RNTVideoView.m
+//  RNTVidyoView.m
 //  nutrimedy_app
 //
 //  Created by Aleksander Maj on 29/09/2017.
 //  Copyright © 2017 Facebook. All rights reserved.
 //
 
-#import "RNTVideoView.h"
+#import "RNTVidyoView.h"
 #import "RNTVideoButton.h"
 
-@interface RNTVideoView ()
+@interface RNTVidyoView ()
 @property (nonatomic, weak) RNTVideoButton *connectButton;
 @property (nonatomic, weak) RNTVideoButton *cameraButton;
 @property (nonatomic, weak) UIActivityIndicatorView *activityIndicator;
@@ -17,7 +17,7 @@
 @property (nonatomic, weak) UIView *activityContainer;
 @end
 
-@implementation RNTVideoView
+@implementation RNTVidyoView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

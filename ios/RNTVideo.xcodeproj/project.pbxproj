@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		885B224B1F8D0C59008DCAFF /* RNTVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */; };
-		CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */; };
-		CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */; };
+		CAF77DD01F8CAE57002E9685 /* RNTVidyoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCC1F8CAE57002E9685 /* RNTVidyoView.m */; };
+		CAF77DD11F8CAE57002E9685 /* RNTVidyoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF77DCE1F8CAE57002E9685 /* RNTVidyoManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,10 +30,10 @@
 		885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTVideoButton.m; sourceTree = "<group>"; };
 		885B224C1F8D0C7E008DCAFF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88DAA1431F8CBE9700CF69E6 /* VidyoClientIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VidyoClientIOS.framework; sourceTree = "<group>"; };
-		CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoView.h; sourceTree = "<group>"; };
-		CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoView.m; sourceTree = "<group>"; };
-		CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVideoManager.h; sourceTree = "<group>"; };
-		CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVideoManager.m; sourceTree = "<group>"; };
+		CAF77DCA1F8CAE57002E9685 /* RNTVidyoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVidyoView.h; sourceTree = "<group>"; };
+		CAF77DCC1F8CAE57002E9685 /* RNTVidyoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVidyoView.m; sourceTree = "<group>"; };
+		CAF77DCD1F8CAE57002E9685 /* RNTVidyoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTVidyoManager.h; sourceTree = "<group>"; };
+		CAF77DCE1F8CAE57002E9685 /* RNTVidyoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTVidyoManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +58,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				CAF77DCD1F8CAE57002E9685 /* RNTVideoManager.h */,
-				CAF77DCE1F8CAE57002E9685 /* RNTVideoManager.m */,
-				CAF77DCA1F8CAE57002E9685 /* RNTVideoView.h */,
-				CAF77DCC1F8CAE57002E9685 /* RNTVideoView.m */,
+				CAF77DCD1F8CAE57002E9685 /* RNTVidyoManager.h */,
+				CAF77DCE1F8CAE57002E9685 /* RNTVidyoManager.m */,
+				CAF77DCA1F8CAE57002E9685 /* RNTVidyoView.h */,
+				CAF77DCC1F8CAE57002E9685 /* RNTVidyoView.m */,
 				885B22491F8D0C59008DCAFF /* RNTVideoButton.h */,
 				885B224A1F8D0C59008DCAFF /* RNTVideoButton.m */,
 				885B224C1F8D0C7E008DCAFF /* Images.xcassets */,
@@ -135,8 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				885B224B1F8D0C59008DCAFF /* RNTVideoButton.m in Sources */,
-				CAF77DD11F8CAE57002E9685 /* RNTVideoManager.m in Sources */,
-				CAF77DD01F8CAE57002E9685 /* RNTVideoView.m in Sources */,
+				CAF77DD11F8CAE57002E9685 /* RNTVidyoManager.m in Sources */,
+				CAF77DD01F8CAE57002E9685 /* RNTVidyoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

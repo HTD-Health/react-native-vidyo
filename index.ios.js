@@ -11,15 +11,15 @@ const RNTVidyoManager = NativeModules.RNTVidyoManager
 
 class Video extends React.Component {
 
-  static connect () {
+  connect () {
     RNTVidyoManager.connectToRoom()
   }
   
-  static disconnect () {
+  disconnect () {
     RNTVidyoManager.disconnect()
   }
 
-  static toggleCamera(value) {
+  toggleCamera(value) {
     RNTVidyoManager.toggleCamera(value)
   }
 

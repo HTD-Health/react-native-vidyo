@@ -4,30 +4,11 @@ import {
   requireNativeComponent,
   View,
   NativeModules,
-  Platform,
-  NativeEventEmitter,
   DeviceEventEmitter,
   findNodeHandle
 } from 'react-native'
 
 const RNTVidyoManager = NativeModules.RNTVidyoManager
-
-const callbackMap = new Map()
-let nextCallbackId = 0
-
-const commands = NativeModules.UIManager.RNTVideo.Commands;
-Object.keys(commands).forEach(command => {
-    RNTVidyoManager[command] = (handle, ...rawArgs) => {
-    const args = rawArgs.map(arg => {
-      if (typeof arg === 'function') {
-        callbackMap.set(nextCallbackId, arg);
-        return nextCallbackId++;
-      }
-      return arg;
-    });
-    NativeModules.UIManager.dispatchViewManagerCommand(handle, commands[command], args);
-  };
-});
 
 class Video extends React.Component {
   constructor(props){
@@ -39,6 +20,21 @@ class Video extends React.Component {
     this.onDisconnectEvent = null
     this.onFailureEvent = null
 
+    const callbackMap = new Map()
+    let nextCallbackId = 0
+    const commands = NativeModules.UIManager.RNTVideo.Commands;
+    Object.keys(commands).forEach(command => {
+        RNTVidyoManager[command] = (handle, ...rawArgs) => {
+        const args = rawArgs.map(arg => {
+          if (typeof arg === 'function') {
+            callbackMap.set(nextCallbackId, arg);
+            return nextCallbackId++;
+          }
+          return arg;
+        });
+        NativeModules.UIManager.dispatchViewManagerCommand(handle, commands[command], args);
+      };
+    }); 
   }
 
   componentWillMount() {
@@ -87,7 +83,7 @@ class Video extends React.Component {
 }
 
 Video.defaultProps = {
-  hubHidden: true
+  hudHidden: true
 }
 
 Video.propTypes = {
@@ -95,8 +91,7 @@ Video.propTypes = {
   token: PropTypes.string,
   roomId: PropTypes.string,
   displayName: PropTypes.string,
-  userName: PropTypes.string,
-  hubHidden: PropTypes.func,
+  hudHidden: PropTypes.bool,
   onReady: PropTypes.func,
   onConnect: PropTypes.func,
   onDisconnect: PropTypes.func,

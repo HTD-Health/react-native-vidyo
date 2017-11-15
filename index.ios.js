@@ -7,20 +7,20 @@ import {
 } from 'react-native'
 
 
-const RNTVideoManager = NativeModules.RNTVideoManager
+const RNTVidyoManager = NativeModules.RNTVidyoManager
 
 class Video extends React.Component {
 
   static connect () {
-    RNTVideoManager.connectToRoom()
+    RNTVidyoManager.connectToRoom()
   }
   
   static disconnect () {
-    RNTVideoManager.disconnect()
+    RNTVidyoManager.disconnect()
   }
 
   static toggleCamera(value) {
-    RNTVideoManager.toggleCamera(value)
+    RNTVidyoManager.toggleCamera(value)
   }
 
   render () {

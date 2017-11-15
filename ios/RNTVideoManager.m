@@ -28,10 +28,10 @@ RCT_EXPORT_VIEW_PROPERTY(host, NSString)
 RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
 RCT_EXPORT_VIEW_PROPERTY(roomId, NSString)
-RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnReady, onReady, RCTBubblingEventBlock)
-RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnConnect, onConnect, RCTBubblingEventBlock)
-RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnDisconnect, onDisconnect, RCTBubblingEventBlock)
-RCT_REMAP_VIEW_PROPERTY(RNTVidyoOnFailure, onFailure, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onReady, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onConnect, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
 
 - (UIView *)view {
     RNTVideoView *view = [RNTVideoView new];

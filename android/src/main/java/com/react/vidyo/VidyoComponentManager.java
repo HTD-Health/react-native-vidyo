@@ -66,7 +66,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
         view.setResourceId(roomName);
     }
 
-    @ReactProp(name = "hubHidden", defaultBoolean = false)
+    @ReactProp(name = "hudHidden", defaultBoolean = false)
     public void setHudHidden(VidyoView view, boolean hidden) {
         if (hidden) {
             view.hideButtons();

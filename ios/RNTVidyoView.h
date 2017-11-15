@@ -1,5 +1,5 @@
 //
-//  RNTVideoView.h
+//  RNTVidyoView.h
 //  nutrimedy_app
 //
 //  Created by Aleksander Maj on 29/09/2017.
@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <React/RCTComponent.h>
 
-@protocol RNTVideoViewDelegate <NSObject>
+@protocol RNTVidyoViewDelegate <NSObject>
 - (void)viewDidMoveToSuperview;
 - (void)cameraButtonTapped:(UIButton *)sender;
 - (void)connectButtonTapped:(UIButton *)sender;
 @end
 
-@interface RNTVideoView : UIView
+@interface RNTVidyoView : UIView
 
-@property (nonatomic, weak) id<RNTVideoViewDelegate> delegate;
+@property (nonatomic, weak) id<RNTVidyoViewDelegate> delegate;
 @property (nonatomic, weak, readonly) UIView *videoContainerView;
 
 @property (nonatomic, assign) BOOL hudHidden;

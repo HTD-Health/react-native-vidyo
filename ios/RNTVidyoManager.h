@@ -1,5 +1,6 @@
+
 //
-//  RNTVideoViewManager.h
+//  RNTVidyoManager.h
 //  nutrimedy_app
 //
 //  Created by Aleksander Maj on 29/09/2017.
@@ -8,7 +9,7 @@
 
 #import <React/RCTViewManager.h>
 
-@interface RNTVideoManager : RCTViewManager
+@interface RNTVidyoManager : RCTViewManager
 
 @end
 

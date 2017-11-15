@@ -1,25 +1,25 @@
 //
-//  RNTVideoViewManager.m
+//  RNTVidyoManager.m
 //  nutrimedy_app
 //
 //  Created by Aleksander Maj on 29/09/2017.
 //  Copyright © 2017 Facebook. All rights reserved.
 //
 
-#import "RNTVideoManager.h"
-#import "RNTVideoView.h"
+#import "RNTVidyoManager.h"
+#import "RNTVidyoView.h"
 #import "Lmi/VidyoClient/VidyoConnector_Objc.h"
 
-@interface RNTVideoManager () <IConnect, RNTVideoViewDelegate>
+@interface RNTVidyoManager () <IConnect, RNTVidyoViewDelegate>
 
 @property (nonatomic, assign, getter=isConnected) BOOL connected;
 @property (nonatomic, assign, getter=isCameraOn) BOOL cameraOn;
 @property (nonatomic, strong) Connector *connector;
-@property (nonatomic, weak) RNTVideoView *videoView;
+@property (nonatomic, weak) RNTVidyoView *videoView;
 
 @end
 
-@implementation RNTVideoManager
+@implementation RNTVidyoManager
 
 RCT_EXPORT_MODULE()
 
@@ -34,7 +34,7 @@ RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
 
 - (UIView *)view {
-    RNTVideoView *view = [RNTVideoView new];
+    RNTVidyoView *view = [RNTVidyoView new];
     view.delegate = self;
     self.videoView = view;
     return view;

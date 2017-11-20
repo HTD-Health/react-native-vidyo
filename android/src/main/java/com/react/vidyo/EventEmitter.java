@@ -9,6 +9,7 @@ class EventEmitter {
     private static final String CONNECTION_STOP = "RNTVidyoOnDisconnect";
     private static final String CONNECTION_START = "RNTVidyoOnConnect";
     private static final String CONNECTION_FAILURE = "RNTVidyoOnFailure";
+    private static final String COMPONENT_INIT_FAILED = "RNTVidyoInitFailed";
     private static final String COMPONENT_READY = "RNTVidyoOnReady";
 
     private static final String FAILURE_DATA = "errorText";
@@ -29,6 +30,10 @@ class EventEmitter {
 
     static void emitVidyoComponentReady(ThemedReactContext context){
         emit(context, COMPONENT_READY, Arguments.createMap());
+    }
+
+    static void emitVidyoComponentInitFailed(ThemedReactContext context){
+        emit(context, COMPONENT_INIT_FAILED, Arguments.createMap());
     }
 
     private static void emit(ThemedReactContext context, String eventName, WritableMap params){

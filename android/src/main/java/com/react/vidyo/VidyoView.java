@@ -2,7 +2,6 @@ package com.react.vidyo;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.provider.CalendarContract;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -181,9 +180,8 @@ public class VidyoView extends ConstraintLayout implements
                 @Override
                 public void onGlobalLayout() {
                     imageContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    checkVidyoConnection();
+                    initVidyoComponent();
 
-                    EventEmitter.emitVidyoComponentReady((ThemedReactContext) getContext());
                 }
             });
             viewTreeObserver.dispatchOnGlobalLayout();
@@ -247,11 +245,16 @@ public class VidyoView extends ConstraintLayout implements
         }
     }
 
-    private void checkVidyoConnection() {
+    private void initVidyoComponent() {
         if (!vidyoConnectorConstructed) {
             if (vidyoClientInitialized) {
                 createVidyoConnector();
-                refreshView();
+                if(vidyoConnectorConstructed && refreshView()){
+                    disableCamera();
+                    EventEmitter.emitVidyoComponentReady((ThemedReactContext) getContext());
+                }else{
+                    EventEmitter.emitVidyoComponentInitFailed((ThemedReactContext) getContext());
+                }
             } else {
                 Log.d(TAG, "ERROR: VidyoClientInitialize failed - not constructing VidyoConnector ...");
             }
@@ -279,12 +282,12 @@ public class VidyoView extends ConstraintLayout implements
         }
     }
 
-    private void refreshView() {
+    private boolean refreshView() {
         Log.d(TAG, "refreshView");
         progress.setVisibility(GONE);
         errorText.setVisibility(GONE);
 
-        vidyoConnector.ShowViewAt(imageContainer, 0, 0, imageContainer.getWidth(), imageContainer.getHeight());
+        return vidyoConnector.ShowViewAt(imageContainer, 0, 0, imageContainer.getWidth(), imageContainer.getHeight());
     }
 
 
@@ -345,6 +348,7 @@ public class VidyoView extends ConstraintLayout implements
     @Override
     public void OnFailure(VidyoConnector.VidyoConnectorFailReason vidyoConnectorFailReason) {
         onConnectorStateUpdeted(VIDYO_CONNECTOR_STATE.VC_CONNECTION_FAILURE, "Failed to connect");
+        EventEmitter.emmitVidyoConnectionFailure((ThemedReactContext) getContext(), vidyoConnectorFailReason.toString());
         Log.d(TAG, vidyoConnectorFailReason.toString());
         Log.d(TAG, "On failure = " + vidyoConnectorFailReason.toString());
     }

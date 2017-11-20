@@ -108,12 +108,12 @@
         "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/patrykjablonski/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
@@ -128,20 +128,20 @@
         "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png",
-        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_end_call.png",
         "source": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/src/main/res/drawable-hdpi/ic_end_call.png"
     },
     {
-        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png",
-        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_popup_background_mtrl_mult.9.png"
+        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png",
         "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/patrykjablonski/nutrimedy-app/node_modules/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/patrykjablonski/.android/build-cache/1c1a056bb0f3d0a67a94f42eb24d16620730e00c/output/res/drawable-hdpi/abc_popup_background_mtrl_mult.9.png"
     },
     {
         "merged": "/Users/patrykjablonski/Downloads/react-native-vidyo/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_btn_rating_star_on_mtrl_alpha.png",

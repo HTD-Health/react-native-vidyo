@@ -29,6 +29,7 @@ RCT_EXPORT_VIEW_PROPERTY(token, NSString)
 RCT_EXPORT_VIEW_PROPERTY(displayName, NSString)
 RCT_EXPORT_VIEW_PROPERTY(roomId, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onReady, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onInitFailed, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onConnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDisconnect, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
@@ -48,7 +49,7 @@ RCT_EXPORT_METHOD(connectToRoom) {
     const char *displayName = [self.videoView.displayName UTF8String];
     const char *roomId = [self.videoView.roomId UTF8String];
     
-    [self.connector Connect:host Token:token DisplayName:displayName ResourceId:roomId Connect:self];
+    BOOL isConnecting = [self.connector Connect:host Token:token DisplayName:displayName ResourceId:roomId Connect:self];
     [self.videoView setConnecting:YES];
 }
 
@@ -103,18 +104,22 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
     [self.videoView setNeedsLayout];
     [self.videoView layoutIfNeeded];
     UIView *videoContainerView = self.videoView.videoContainerView;
+
     self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
-    [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
-    if (self.videoView.onReady) {
-        self.videoView.onReady(@{});
+    self.cameraOn = NO;
+    BOOL isPresented = [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
+
+    if (isPresented) {
+        if (self.videoView.onReady) {
+            self.videoView.onReady(@{});
+        }
+    } else {
+        self.videoView.onInitFailed(@{});
     }
 }
 
 - (void)cameraButtonTapped:(UIButton *)sender {
-    BOOL result = [self.connector SetCameraPrivacy:!self.isCameraOn];
-    if (result) {
-        self.cameraOn = !self.isCameraOn;
-    }
+    self.cameraOn = !self.isCameraOn;
 }
 
 - (void)connectButtonTapped:(UIButton *)sender {
@@ -131,8 +136,11 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
 }
 
 - (void)setCameraOn:(BOOL)cameraOn {
-    _cameraOn = cameraOn;
-    [self.videoView setCameraOn:cameraOn];
+    BOOL result = [self.connector SetCameraPrivacy:!self.isCameraOn];
+    if (result) {
+        _cameraOn = cameraOn;
+        [self.videoView setCameraOn:cameraOn];
+    }
 }
 
 @end

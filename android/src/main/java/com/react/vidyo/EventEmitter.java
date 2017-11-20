@@ -14,8 +14,10 @@ class EventEmitter {
 
     private static final String FAILURE_DATA = "errorText";
 
-    static void emmitVidyoConnectionEnd(ThemedReactContext context){
-        emit(context, CONNECTION_STOP, Arguments.createMap());
+    static void emmitVidyoConnectionEnd(ThemedReactContext context, String errorText){
+        WritableMap map = Arguments.createMap();
+        map.putString(FAILURE_DATA, errorText);
+        emit(context, CONNECTION_STOP, map);
     }
 
     static void emmitVidyoConnected(ThemedReactContext context){

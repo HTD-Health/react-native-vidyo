@@ -204,7 +204,6 @@ public class VidyoView extends ConstraintLayout implements
         }
 
         Connector.Uninitialize();
-        EventEmitter.emmitVidyoConnectionEnd((ThemedReactContext) getContext());
     }
 
     public void disableCamera(){
@@ -366,6 +365,7 @@ public class VidyoView extends ConstraintLayout implements
             state = VIDYO_CONNECTOR_STATE.VC_DISCONNECTED_UNEXPECTED;
             statusText = "Unexpected disconnection";
         }
+        EventEmitter.emmitVidyoConnectionEnd((ThemedReactContext) getContext(), vidyoConnectorDisconnectReason.toString());
         onConnectorStateUpdeted(state, statusText);
     }
 

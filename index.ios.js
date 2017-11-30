@@ -41,6 +41,7 @@ Video.propTypes = {
   onConnect: PropTypes.func,
   onDisconnect: PropTypes.func,
   onFailure: PropTypes.func,
+  onInitFailed: PropTypes.func,
 }
 
 var RNTVideo = requireNativeComponent('RNTVidyo', Video)

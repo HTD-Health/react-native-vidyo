@@ -19,6 +19,7 @@ class Video extends React.Component {
     this.onConnectEvent = null
     this.onDisconnectEvent = null
     this.onFailureEvent = null
+    this.onInitFailureEvent = null
 
     const callbackMap = new Map()
     let nextCallbackId = 0
@@ -42,6 +43,7 @@ class Video extends React.Component {
     this.onConnectEvent = this.eventEmiter.addListener('RNTVidyoOnConnect', this.handleOnConnect)
     this.onDisconnectEvent = this.eventEmiter.addListener('RNTVidyoOnDisconnect', this.handleOnDisconnect)
     this.onFailureEvent = this.eventEmiter.addListener('RNTVidyoOnFailure', this.handleOnFailure)
+    this.onInitFailedEvent = this.eventEmiter.addListener('RNTVidyoInitFailed', this.handleOnInitFailed)
   }
 
   componentWillUnmount() {
@@ -75,6 +77,9 @@ class Video extends React.Component {
   handleOnFailure = (e) => {
     if (typeof this.props.onFailure === 'function') { this.props.onFailure(e) }
   }
+  handleOnInitFailed = (e) => {
+    if (typeof this.props.onInitFailed === 'function') { this.props.onInitFailed(e) }
+  }
 
   render () {
     return <RNTVideo
@@ -96,6 +101,7 @@ Video.propTypes = {
   onConnect: PropTypes.func,
   onDisconnect: PropTypes.func,
   onFailure: PropTypes.func,
+  onInitFailed: PropTypes.func,
   ...View.propTypes
 }
 

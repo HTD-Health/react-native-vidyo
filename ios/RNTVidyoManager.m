@@ -136,7 +136,7 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
 }
 
 - (void)setCameraOn:(BOOL)cameraOn {
-    BOOL cameraPrivacy = !cameraOn
+    BOOL cameraPrivacy = !cameraOn;
     BOOL result = [self.connector SetCameraPrivacy:cameraPrivacy];
     if (result) {
         _cameraOn = cameraOn;

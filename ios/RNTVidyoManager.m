@@ -41,6 +41,10 @@ RCT_EXPORT_VIEW_PROPERTY(onFailure, RCTBubblingEventBlock)
     return view;
 }
 
+- (dispatch_queue_t)methodQueue {
+    return dispatch_get_main_queue();
+}
+
 #pragma mark EXPORT methods
 
 RCT_EXPORT_METHOD(connectToRoom) {

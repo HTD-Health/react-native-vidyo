@@ -31,6 +31,12 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onConnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onDisconnect;
 @property (nonatomic, copy) RCTBubblingEventBlock onFailure;
+@property (nonatomic, copy) RCTBubblingEventBlock onCameraIsOn;
+@property (nonatomic, copy) RCTBubblingEventBlock onCameraIsOff;
+@property (nonatomic, copy) RCTBubblingEventBlock onCameraFailure;
+@property (nonatomic, copy) RCTBubblingEventBlock onMicIsOn;
+@property (nonatomic, copy) RCTBubblingEventBlock onMicIsOff;
+@property (nonatomic, copy) RCTBubblingEventBlock onMicFailure;
 
 - (void)setConnected:(BOOL)connected;
 - (void)setConnecting:(BOOL)connecting;

@@ -107,7 +107,7 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
 
     self.connector = [[Connector alloc] init:&videoContainerView ViewStyle:CONNECTORVIEWSTYLE_Default RemoteParticipants:16 LogFileFilter:"" LogFileName:"" UserData:0];
     self.cameraOn = NO;
-    BOOL isPresented = [self.connector ShowViewAt:&videoContainerView X:0 Y:0 Width:videoContainerView.bounds.size.width Height:videoContainerView.bounds.size.height];
+    BOOL isPresented = [self layoutVideoViewInContainerView:videoContainerView];
 
     if (isPresented) {
         if (self.videoView.onReady) {
@@ -116,6 +116,10 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
     } else {
         self.videoView.onInitFailed(@{});
     }
+}
+
+- (void)viewDidLayoutSubviews {
+    [self layoutVideoViewInContainerView:self.videoView.videoContainerView];
 }
 
 - (void)cameraButtonTapped:(UIButton *)sender {
@@ -144,5 +148,12 @@ RCT_EXPORT_METHOD(toggleCamera:(BOOL)enabled) {
     }
 }
 
+- (BOOL)layoutVideoViewInContainerView:(UIView *)containerView {
+    return [self.connector ShowViewAt:&containerView
+                                    X:containerView.bounds.origin.x
+                                    Y:containerView.bounds.origin.y
+                                Width:containerView.bounds.size.width
+                               Height:containerView.bounds.size.height];
+}
 @end
 

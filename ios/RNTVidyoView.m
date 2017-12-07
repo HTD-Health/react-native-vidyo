@@ -33,6 +33,11 @@
     [self.delegate viewDidMoveToSuperview];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.delegate viewDidLayoutSubviews];
+}
+
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
 }

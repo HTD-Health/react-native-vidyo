@@ -11,6 +11,7 @@
 
 @protocol RNTVidyoViewDelegate <NSObject>
 - (void)viewDidMoveToSuperview;
+- (void)viewDidLayoutSubviews;
 - (void)cameraButtonTapped:(UIButton *)sender;
 - (void)connectButtonTapped:(UIButton *)sender;
 @end

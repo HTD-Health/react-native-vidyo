@@ -21,6 +21,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
     public static final int COMMAND_DISCONNECT = 2;
     public static final int COMMAND_TOGGLE_CAMERA = 3;
     public static final int COMMAND_DEINITIALIZE = 4;
+    public static final int COMMAND_TOGGLE_MIC = 5;
 
     public VidyoComponentManager() {
         super();
@@ -79,8 +80,16 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
     public void toggleCamera(VidyoView view, boolean enabled){
         if(!enabled) {
             view.disableCamera();
-        }else{
+        } else {
             view.enableCamera();
+        }
+    }
+
+    public void toggleMic(VidyoView view, boolean enabled){
+        if(enabled) {
+            view.enableMic();
+        } else {
+            view.disableMic();
         }
     }
 
@@ -117,8 +126,13 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
                 disconnect(root);
                 break;
             case COMMAND_TOGGLE_CAMERA:
-                if(args != null) {
+                if(args != null && args.size() > 0) {
                     toggleCamera(root, args.getBoolean(0));
+                }
+                break;
+            case COMMAND_TOGGLE_MIC:
+                if(args != null && args.size() > 0) {
+                    toggleMic(root, args.getBoolean(0));
                 }
                 break;
             case COMMAND_DEINITIALIZE:

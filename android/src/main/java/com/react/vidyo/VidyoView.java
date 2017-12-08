@@ -229,6 +229,25 @@ public class VidyoView extends ConstraintLayout implements
         }
     }
 
+    public void disableMic() {
+        if (vidyoConnector != null) {
+            if (vidyoConnector.SetMicrophonePrivacy(false)) {
+                //todo implement event on mic disabled
+            }
+        }
+    }
+
+    public void enableMic(){
+        Log.d(TAG, "Disable camera");
+        if(vidyoConnector != null) {
+            if(vidyoConnector.SetMicrophonePrivacy(true)) {
+                //todo event on mic enabled
+            } else {
+                //todo event on mic enable failure
+            }
+        }
+    }
+
     public void connect() {
         Log.d(TAG, "Connect");
         if (vidyoConnectorState != VIDYO_CONNECTOR_STATE.VC_CONNECTED && vidyoConnector != null) {

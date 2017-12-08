@@ -111,6 +111,7 @@ public class VidyoComponentManager extends ViewGroupManager<VidyoView> {
                 .put("connectToRoom", COMMAND_CONNECT_TO_ROOM)
                 .put("disconnect", COMMAND_DISCONNECT)
                 .put("toggleCamera", COMMAND_TOGGLE_CAMERA)
+                .put( "toggleMic", COMMAND_TOGGLE_MIC)
                 .put("deinitialize", COMMAND_DEINITIALIZE)
                 .build();
     }

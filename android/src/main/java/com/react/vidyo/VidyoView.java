@@ -199,17 +199,21 @@ public class VidyoView extends ConstraintLayout implements
     public void disconnect() {
         Log.d(TAG, "Detach");
         if(vidyoConnector != null) {
+            vidyoConnector.Disable();
             vidyoConnector.Disconnect();
-
         }
+    }
 
+    public void deinitialize(){
         Connector.Uninitialize();
     }
 
     public void disableCamera(){
         Log.d(TAG, "Disable camera");
         if(vidyoConnector != null) {
-            vidyoConnector.SetCameraPrivacy(false);
+            if(vidyoConnector.SetCameraPrivacy(false)) {
+                EventEmitter.emitVidyoOnCameraOff((ThemedReactContext) getContext());
+            }
         }
     }
 
@@ -217,7 +221,11 @@ public class VidyoView extends ConstraintLayout implements
     public void enableCamera(){
         Log.d(TAG, "Disable camera");
         if(vidyoConnector != null) {
-            vidyoConnector.SetCameraPrivacy(true);
+            if(vidyoConnector.SetCameraPrivacy(true)) {
+                EventEmitter.emitVidyoOnCameraIsOn((ThemedReactContext) getContext());
+            } else {
+                EventEmitter.emitVidyoOnCameraFailure((ThemedReactContext) getContext());
+            }
         }
     }
 

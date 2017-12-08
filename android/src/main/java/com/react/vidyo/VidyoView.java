@@ -200,7 +200,6 @@ public class VidyoView extends ConstraintLayout implements
         if(vidyoConnector != null) {
             vidyoConnector.Disable();
             vidyoConnector.Disconnect();
-            vidyoConnector = null;
         }
         Connector.Uninitialize();
     }

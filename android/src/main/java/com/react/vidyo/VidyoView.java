@@ -51,9 +51,8 @@ public class VidyoView extends ConstraintLayout implements
     private String token;
     private String userName;
     private String resourceId;
-    /** View methods **/
 
-    private final Runnable mLayoutRunnable = new Runnable() {
+    private final Runnable layoutRemeasureRunnable = new Runnable() {
         @Override
         public void run() {
             measure(
@@ -169,7 +168,7 @@ public class VidyoView extends ConstraintLayout implements
     @Override
     public void requestLayout() {
         super.requestLayout();
-        post(mLayoutRunnable);
+        post(layoutRemeasureRunnable);
     }
 
     public void start() {
@@ -199,10 +198,9 @@ public class VidyoView extends ConstraintLayout implements
     public void disconnect() {
         Log.d(TAG, "Detach");
         if(vidyoConnector != null) {
+            vidyoConnector.Disable();
             vidyoConnector.Disconnect();
-
         }
-
         Connector.Uninitialize();
     }
 
@@ -286,7 +284,10 @@ public class VidyoView extends ConstraintLayout implements
         progress.setVisibility(GONE);
         errorText.setVisibility(GONE);
 
-        return vidyoConnector.ShowViewAt(imageContainer, 0, 0, imageContainer.getWidth(), imageContainer.getHeight());
+        if(vidyoConnector != null) {
+            return vidyoConnector.ShowViewAt(imageContainer, 0, 0, imageContainer.getWidth(), imageContainer.getHeight());
+        }
+        return false;
     }
 
 
@@ -298,7 +299,7 @@ public class VidyoView extends ConstraintLayout implements
     protected void onDraw(Canvas canvas) {
         Log.d(TAG, "OnDraw");
         super.onDraw(canvas);
-
+        refreshView();
     }
 
     @Override
@@ -317,8 +318,6 @@ public class VidyoView extends ConstraintLayout implements
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         Log.d(TAG, "onLayout");
-
-
     }
 
     public void restartConnection() {
@@ -329,10 +328,12 @@ public class VidyoView extends ConstraintLayout implements
     }
 
     public void setHeight(int height) {
+        Log.d(TAG, "setHeight");
         getLayoutParams().height = height;
     }
 
     public void setWidth(int width) {
+        Log.d(TAG, "setWidth");
         getLayoutParams().width = width;
     }
 
@@ -436,4 +437,3 @@ public class VidyoView extends ConstraintLayout implements
         EventEmitter.emmitVidyoConnectionFailure((ThemedReactContext) getContext(), "cannot connect");
     }
 }
-

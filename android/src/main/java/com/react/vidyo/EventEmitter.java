@@ -11,6 +11,9 @@ class EventEmitter {
     private static final String CONNECTION_FAILURE = "RNTVidyoOnFailure";
     private static final String COMPONENT_INIT_FAILED = "RNTVidyoInitFailed";
     private static final String COMPONENT_READY = "RNTVidyoOnReady";
+    private static final String CAMERA_IS_ON = "RNTVidyoOnCameraIsOn";
+    private static final String CAMERA_FAILURE = "RNTVidyoOnCameraFailure";
+    private static final String CAMERA_OFF = "RNTVidyoOnCameraOff";
 
     private static final String FAILURE_DATA = "errorText";
 
@@ -36,6 +39,18 @@ class EventEmitter {
 
     static void emitVidyoComponentInitFailed(ThemedReactContext context){
         emit(context, COMPONENT_INIT_FAILED, Arguments.createMap());
+    }
+
+    static void emitVidyoOnCameraIsOn(ThemedReactContext context){
+        emit(context, CAMERA_IS_ON, Arguments.createMap());
+    }
+
+    static void emitVidyoOnCameraFailure(ThemedReactContext context){
+        emit(context, CAMERA_FAILURE, Arguments.createMap());
+    }
+
+    static void emitVidyoOnCameraOff(ThemedReactContext context){
+        emit(context, CAMERA_OFF, Arguments.createMap());
     }
 
     private static void emit(ThemedReactContext context, String eventName, WritableMap params){

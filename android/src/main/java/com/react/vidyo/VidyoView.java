@@ -231,20 +231,14 @@ public class VidyoView extends ConstraintLayout implements
 
     public void disableMic() {
         if (vidyoConnector != null) {
-            if (vidyoConnector.SetMicrophonePrivacy(false)) {
-                //todo implement event on mic disabled
-            }
+            vidyoConnector.SetMicrophonePrivacy(false);
         }
     }
 
     public void enableMic(){
         Log.d(TAG, "Disable camera");
         if(vidyoConnector != null) {
-            if(vidyoConnector.SetMicrophonePrivacy(true)) {
-                //todo event on mic enabled
-            } else {
-                //todo event on mic enable failure
-            }
+            vidyoConnector.SetMicrophonePrivacy(true);
         }
     }
 
